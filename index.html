@@ -2,317 +2,234 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Rossangela 💖</title>
 
-<title>Para Rossangela 🤍</title>
-
-<!-- =====================================================
-     FUENTES
-===================================================== -->
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:wght@400;500;600&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+<!-- FUENTES BONITAS -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
 
 <style>
-/* =====================================================
-   RESET GENERAL
-===================================================== */
+/* =========================
+   RESET
+========================= */
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-html{
-    scroll-behavior:smooth;
-}
-
 body{
     min-height:100vh;
-    background:radial-gradient(circle at top, #2a043c, #120016);
+    background: radial-gradient(circle at top, #5e3b76, #1e0f2f);
     font-family:'Playfair Display', serif;
-    color:#ffe6f2;
-    overflow-x:hidden;
-    transition:background 2s ease;
+    overflow:hidden;
+    color:#f7ecff;
 }
 
-/* =====================================================
-   FONDO LUMINOSO SUAVE
-===================================================== */
-.fondo-luz{
+/* =========================
+   FONDO ANIMADO
+========================= */
+.background{
     position:fixed;
     inset:0;
-    background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,.12), transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(255,255,255,.08), transparent 45%);
-    z-index:0;
+    overflow:hidden;
+    z-index:1;
 }
 
-/* =====================================================
-   PARTÍCULAS (FLORES Y CORAZONES)
-===================================================== */
-.particula{
-    position:fixed;
-    pointer-events:none;
-    z-index:5; /* 🔧 CORREGIDO */
-    opacity:.85;
-    animation: flotar linear infinite;
+/* =========================
+   CORAZONES (COMO EL PRIMERO)
+========================= */
+.heart{
+    position:absolute;
+    width:18px;
+    height:18px;
+    background:#ff7eb9;
+    transform:rotate(45deg);
+    animation: floatHeart linear infinite;
+    opacity:0.8;
+    box-shadow:0 0 12px rgba(255,126,185,0.9);
 }
 
-@keyframes flotar{
-    0%{
-        transform:translateY(110vh) rotate(0deg);
-        opacity:0;
-    }
-    20%{opacity:1;}
-    100%{
-        transform:translateY(-20vh) rotate(360deg);
-        opacity:0;
-    }
+.heart::before,
+.heart::after{
+    content:"";
+    position:absolute;
+    width:18px;
+    height:18px;
+    background:#ff7eb9;
+    border-radius:50%;
 }
 
-/* =====================================================
-   CONTENEDOR PRINCIPAL
-===================================================== */
-.contenedor{
-    max-width:1000px;
-    margin:70px auto;
-    padding:60px;
-    background:linear-gradient(145deg, rgba(255,255,255,.14), rgba(255,255,255,.05));
-    border-radius:40px;
-    box-shadow:
-        0 0 60px rgba(255,255,255,.25),
-        inset 0 0 35px rgba(255,255,255,.12);
-    backdrop-filter:blur(8px);
+.heart::before{
+    top:-9px;
+    left:0;
+}
+
+.heart::after{
+    left:-9px;
+    top:0;
+}
+
+/* =========================
+   FLORES
+========================= */
+.flower{
+    position:absolute;
+    font-size:22px;
+    animation: floatFlower linear infinite;
+    opacity:0.9;
+    filter: drop-shadow(0 0 8px rgba(255,255,255,0.6));
+}
+
+/* =========================
+   CONTENEDOR
+========================= */
+.container{
     position:relative;
-    z-index:10;
+    z-index:5;
+    max-width:900px;
+    margin:auto;
+    padding:60px 40px 120px;
 }
 
-/* =====================================================
+/* =========================
    TITULOS
-===================================================== */
+========================= */
 h1{
+    font-family:'Great Vibes', cursive;
+    font-size:64px;
     text-align:center;
-    font-family:'Dancing Script', cursive;
-    font-size:62px;
-    color:#ffffff;
     margin-bottom:10px;
-    text-shadow:
-        0 0 10px rgba(255,255,255,.6),
-        0 0 30px rgba(255,255,255,.9);
+    text-shadow:0 0 15px rgba(255,255,255,0.5);
 }
 
 h2{
     text-align:center;
     font-weight:300;
-    letter-spacing:2px;
-    margin-bottom:45px;
-    color:#f3d6e5;
+    font-size:20px;
+    margin-bottom:50px;
+    opacity:0.9;
 }
 
-/* =====================================================
+/* =========================
    CARTA
-===================================================== */
-.carta{
-    display:none;
-    margin-top:20px;
+========================= */
+.letter{
+    background:rgba(255,255,255,0.07);
+    border-radius:25px;
+    padding:45px;
+    box-shadow:0 0 40px rgba(0,0,0,0.35);
+    backdrop-filter: blur(6px);
+    line-height:1.7;
 }
 
-.carta p{
-    margin-bottom:35px;
-    font-size:21px;
-    line-height:2.2;
-    opacity:0;
-    transform:translateY(25px);
-    transition:all 1.4s ease;
+.letter p{
+    margin-bottom:22px;
     text-align:justify;
 }
 
-/* =====================================================
-   BOTONES
-===================================================== */
-button{
+/* =========================
+   BOTON
+========================= */
+.btn{
     display:block;
-    margin:30px auto;
-    padding:16px 45px;
-    border:none;
-    border-radius:40px;
-    background:linear-gradient(45deg,#ffffff,#f1cfe0);
-    color:#3b0025;
+    margin:45px auto 0;
+    padding:14px 36px;
     font-size:16px;
-    letter-spacing:2px;
+    border-radius:40px;
+    border:none;
     cursor:pointer;
-    box-shadow:0 0 30px rgba(255,255,255,.7);
-    transition:.35s;
+    background:linear-gradient(135deg,#ff7eb9,#b388ff);
+    color:white;
+    font-family:'Playfair Display', serif;
+    box-shadow:0 0 15px rgba(255,126,185,0.6);
+    transition:transform .3s, box-shadow .3s;
 }
 
-button:hover{
-    transform:scale(1.1);
-    box-shadow:0 0 55px rgba(255,255,255,1);
+.btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 25px rgba(255,126,185,0.9);
 }
 
-/* =====================================================
-   CONTADOR
-===================================================== */
-.contador{
-    text-align:center;
-    margin-top:40px;
-    font-family:'Cinzel', serif;
-    color:#ffffff;
+/* =========================
+   ANIMACIONES
+========================= */
+@keyframes floatHeart{
+    from{
+        transform:translateY(100vh) rotate(45deg);
+        opacity:0;
+    }
+    to{
+        transform:translateY(-120vh) rotate(45deg);
+        opacity:1;
+    }
 }
 
-/* =====================================================
-   FINAL
-===================================================== */
-.final{
-    display:none;
-    margin-top:50px;
-    text-align:center;
-    font-size:22px;
-    color:#ffffff;
-}
-
-/* =====================================================
-   FIRMA
-===================================================== */
-.firma{
-    margin-top:60px;
-    text-align:right;
-    font-style:italic;
-    color:#ffe6f2;
+@keyframes floatFlower{
+    from{
+        transform:translateY(100vh) rotate(0deg);
+    }
+    to{
+        transform:translateY(-120vh) rotate(360deg);
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="fondo-luz"></div>
+<div class="background" id="background"></div>
 
-<!-- ================= MUSICA ================= -->
-<audio id="musica" loop>
-    <source src="musica.mp3" type="audio/mpeg">
-</audio>
+<div class="container">
+    <h1>Para Rossangela 💖</h1>
+    <h2>Una carta para ti</h2>
 
-<div class="contenedor">
+    <div class="letter">
+        <p>Hola… Rossangela.</p>
 
-<h1>Para Rossangela 🤍</h1>
-<h2>Una carta para ti</h2>
+        <p>Si lees esto significa que hoy martes 10 de febrero sí tuve el valor de pedirte ser mi enamorada. Programé esto porque me conozco y sé que al momento me trabo o me olvido decir muchas cosas.</p>
 
-<button onclick="iniciar()">Leelo porfavor ✨</button>
+        <p>Hay personas que llegan de manera silenciosa, pero aun así lo transforman todo. No hacen ruido, no buscan llamar la atención, simplemente llegan… y sin darse cuenta, cambian el ritmo del corazón.</p>
 
-<div class="carta" id="carta"></div>
+        <p>Tú hiciste eso conmigo. Poco a poco, sin forzar nada, sin prometer cosas imposibles, solo siendo tú. Y tal vez por eso es tan especial.</p>
 
-<button id="btnSiguiente" onclick="siguiente()" style="display:none">
-Seguir leyendo 🤍
-</button>
+        <p>No sé qué nos espera mañana, pero hoy quiero decirte que me haces sentir tranquilo, feliz y con ganas de intentar. Y eso, para mí, ya es mucho.</p>
 
-<div class="contador" id="contador"></div>
+        <p>Gracias por existir, por sonreír, por quedarte un poquito más. Esta carta es pequeña comparada con lo que siento, pero es sincera.</p>
 
-<div class="final" id="final">
-Gracias por leer hasta aquí 🌹<br>
-Esta carta existe porque tú existes.
-</div>
+        <p>Con cariño, alguien que te piensa más de lo que imaginas.</p>
 
-<div class="firma">
-Con cariño,<br>
-Brian ✨
-</div>
-
+        <button class="btn">💖 Seguir leyendo 💖</button>
+    </div>
 </div>
 
 <script>
-/* =====================================================
-   TEXTO DE LA CARTA (CORREGIDO)
-===================================================== */
-const parrafos = [
-`Hola... Rossangela`,
+const bg = document.getElementById("background");
 
-`Si lees esto significa que hoy martes 10 de febrero sí tuve el valor de pedirte ser mi enamorada.
-Programé esto porque me conozco y sé que al momento me trabo o me olvido decir muchas cosas.`,
-
-`Hay personas que llegan de manera silenciosa,
-pero aun así lo transforman todo.
-No hacen ruido,
-simplemente se quedan.`,
-
-`Desde que apareciste,
-los días comenzaron a sentirse distintos.`,
-
-`No intento impresionarte,
-prefiero ser sincero,
-porque lo sincero permanece.`,
-
-`Pensarte se volvió algo natural,
-algo tranquilo,
-como una costumbre bonita.`,
-
-`Si hoy lees esto,
-quiero que sepas algo muy simple:
-lo que siento es real.`,
-
-`Gracias por existir,
-por ser como eres,
-y por inspirar sin darte cuenta.`,
-
-`Rossangela,
-esta carta es solo un reflejo pequeño
-de algo mucho más grande 🤍`
-];
-
-let indice = 0;
-let segundos = 0;
-
-/* =====================================================
-   FUNCIONES
-===================================================== */
-function iniciar(){
-    document.getElementById("musica").play();
-    document.getElementById("carta").style.display="block";
-    document.getElementById("btnSiguiente").style.display="block";
-    crearParticulas();
-    iniciarContador();
-    siguiente();
+/* =========================
+   CREAR CORAZONES
+========================= */
+for(let i=0;i<50;i++){
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.style.left = Math.random()*100+"vw";
+    heart.style.animationDuration = (8+Math.random()*10)+"s";
+    heart.style.animationDelay = Math.random()*5+"s";
+    bg.appendChild(heart);
 }
 
-function siguiente(){
-    if(indice < parrafos.length){
-        const p = document.createElement("p");
-        p.textContent = parrafos[indice];
-        document.getElementById("carta").appendChild(p);
-        setTimeout(()=>{
-            p.style.opacity=1;
-            p.style.transform="translateY(0)";
-        },120);
-        indice++;
-    }else{
-        document.getElementById("btnSiguiente").style.display="none";
-        document.getElementById("final").style.display="block";
-    }
-}
+/* =========================
+   CREAR FLORES
+========================= */
+const flowers = ["🌸","🌺","🌼","💐"];
 
-/* =====================================================
-   PARTÍCULAS
-===================================================== */
-function crearParticulas(){
-    setInterval(()=>{
-        const el = document.createElement("div");
-        el.className="particula";
-        el.textContent = Math.random()>0.5 ? "🌹" : "🤍";
-        el.style.left = Math.random()*100 + "vw";
-        el.style.fontSize = (18 + Math.random()*30) + "px";
-        el.style.animationDuration = (8 + Math.random()*10) + "s";
-        document.body.appendChild(el);
-        setTimeout(()=>el.remove(),20000);
-    },450);
-}
-
-/* =====================================================
-   CONTADOR
-===================================================== */
-function iniciarContador(){
-    setInterval(()=>{
-        segundos++;
-        document.getElementById("contador").textContent =
-        "Tiempo leyendo esta carta: " + segundos + " segundos 🤍";
-    },1000);
+for(let i=0;i<30;i++){
+    const flower = document.createElement("div");
+    flower.className = "flower";
+    flower.innerText = flowers[Math.floor(Math.random()*flowers.length)];
+    flower.style.left = Math.random()*100+"vw";
+    flower.style.animationDuration = (12+Math.random()*12)+"s";
+    flower.style.animationDelay = Math.random()*5+"s";
+    bg.appendChild(flower);
 }
 </script>
 
