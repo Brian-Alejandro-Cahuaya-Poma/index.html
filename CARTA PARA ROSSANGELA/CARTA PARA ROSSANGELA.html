@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Rossangela 💖</title>
+
+<style>
+/* =========================
+   RESET Y BASE
+========================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background: linear-gradient(180deg, #2a0435, #0f0c29);
+    color:#fff;
+    font-family: "Georgia", serif;
+    min-height:100vh;
+    overflow-x:hidden;
+    transition: background 10s ease;
+}
+
+/* =========================
+   FONDOS ANIMADOS
+========================= */
+.rosa, .corazon{
+    position:fixed;
+    top:-40px;
+    animation: caer linear infinite;
+    opacity:.85;
+    pointer-events:none;
+}
+
+.rosa{ color:#ff6fae; }
+.corazon{ color:#ff4d88; }
+
+@keyframes caer{
+    to{
+        transform: translateY(120vh) rotate(360deg);
+    }
+}
+
+/* =========================
+   CONTENEDOR
+========================= */
+.contenedor{
+    max-width:900px;
+    margin:70px auto;
+    padding:45px;
+    background:rgba(255,255,255,0.1);
+    border-radius:30px;
+    box-shadow:0 0 45px rgba(255,0,120,.45);
+    animation: aparecer 2s ease;
+}
+
+@keyframes aparecer{
+    from{opacity:0; transform:scale(.85);}
+    to{opacity:1; transform:scale(1);}
+}
+
+h1{
+    text-align:center;
+    font-size:48px;
+    color:#ffb6d5;
+    margin-bottom:10px;
+    text-shadow:0 0 15px #ff4d88;
+}
+
+h2{
+    text-align:center;
+    font-weight:normal;
+    margin-bottom:35px;
+    color:#ffd6e8;
+}
+
+/* =========================
+   CARTA
+========================= */
+.carta{
+    font-size:18px;
+    line-height:1.9;
+    text-align:justify;
+    display:none;
+    white-space:pre-line;
+    margin-top:25px;
+}
+
+.destacado{
+    color:#ff9acb;
+    font-weight:bold;
+}
+
+/* =========================
+   BOTONES
+========================= */
+button{
+    display:block;
+    margin:25px auto;
+    padding:14px 36px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(45deg,#ff4d88,#ff85b3);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    box-shadow:0 0 20px #ff4d88;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+button.secundario{
+    background:linear-gradient(45deg,#a855f7,#ec4899);
+}
+
+/* =========================
+   EXTRAS
+========================= */
+.firma{
+    text-align:right;
+    margin-top:45px;
+    font-style:italic;
+    color:#ffd6e8;
+}
+
+.latidos{
+    text-align:center;
+    margin-top:20px;
+    font-size:15px;
+    opacity:.8;
+}
+
+.oculto{
+    display:none;
+    margin-top:30px;
+    text-align:center;
+    color:#ffb6d5;
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     MUSICA
+========================= -->
+<audio id="musica" loop>
+<source src="https://cdn.pixabay.com/audio/2022/10/25/audio_9b5b93cbd6.mp3">
+</audio>
+
+<div class="contenedor">
+<h1>Para Rossangela 💖</h1>
+<h2>Una carta que late contigo</h2>
+
+<button onclick="iniciarCarta()">Abrir la carta 💌</button>
+
+<div class="carta" id="carta"></div>
+
+<button class="secundario" onclick="mostrarSecreto()">Ver algo más ✨</button>
+
+<div class="oculto" id="secreto">
+💗 Este mensaje existe porque tú existes 💗
+</div>
+
+<div class="latidos" id="latidos">
+Latidos del corazón: 0 💓
+</div>
+
+<div class="firma">
+Con cariño,<br>
+alguien que pensó en ti en cada línea 💕
+</div>
+</div>
+
+<script>
+/* =========================
+   TEXTO DE LA CARTA
+========================= */
+const textoCarta = `
+Rossangela,
+
+No sabía muy bien cómo decirte todo esto,
+y por eso decidí hacerlo de una manera diferente…
+con tiempo, con calma,
+y con la sinceridad que nace cuando pienso en ti.
+
+Desde que llegaste a mi vida,
+las cosas pequeñas comenzaron a tener más sentido.
+Las canciones suenan distinto,
+las sonrisas aparecen solas,
+y hasta los silencios se sienten más tranquilos.
+
+No eres solo alguien especial,
+eres esa persona que logra cambiar
+el ánimo de un día entero
+con solo existir.
+
+No prometo perfección,
+pero sí verdad.
+No prometo caminos fáciles,
+pero sí caminar contigo
+si algún día decides hacerlo.
+
+Esto no es solo una carta,
+es una forma de decirte
+que lo que siento es real,
+tranquilo,
+y profundamente sincero.
+
+Si alguna vez dudas,
+vuelve aquí.
+Este pequeño programa
+es solo una prueba
+de algo mucho más grande
+que nace de mi corazón.
+`;
+
+/* =========================
+   MAQUINA DE ESCRIBIR
+========================= */
+let indice = 0;
+function escribirCarta(){
+    if(indice < textoCarta.length){
+        document.getElementById("carta").textContent += textoCarta.charAt(indice);
+        indice++;
+        setTimeout(escribirCarta, 35);
+    }
+}
+
+/* =========================
+   INICIO
+========================= */
+function iniciarCarta(){
+    document.getElementById("carta").style.display="block";
+    document.getElementById("musica").play();
+    escribirCarta();
+    iniciarRosas();
+    iniciarCorazones();
+    iniciarLatidos();
+    cambiarFondo();
+}
+
+/* =========================
+   EFECTOS
+========================= */
+function iniciarRosas(){
+    setInterval(()=>{
+        crearElemento("🌹","rosa",8,28);
+    },500);
+}
+
+function iniciarCorazones(){
+    setInterval(()=>{
+        crearElemento("💖","corazon",12,24);
+    },800);
+}
+
+function crearElemento(simbolo,clase,min,max){
+    let el=document.createElement("div");
+    el.className=clase;
+    el.textContent=simbolo;
+    el.style.left=Math.random()*100+"vw";
+    el.style.fontSize=(min+Math.random()*max)+"px";
+    el.style.animationDuration=(6+Math.random()*6)+"s";
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),14000);
+}
+
+/* =========================
+   SECRETO
+========================= */
+function mostrarSecreto(){
+    document.getElementById("secreto").style.display="block";
+}
+
+/* =========================
+   LATIDOS
+========================= */
+let latidos=0;
+function iniciarLatidos(){
+    setInterval(()=>{
+        latidos++;
+        document.getElementById("latidos").textContent=
+        "Latidos del corazón: "+latidos+" 💓";
+    },1000);
+}
+
+/* =========================
+   FONDO DINAMICO
+========================= */
+function cambiarFondo(){
+    setInterval(()=>{
+        document.body.style.background=
+        "linear-gradient(180deg,#"+Math.floor(Math.random()*999999)+",#0f0c29)";
+    },12000);
+}
+</script>
+
+</body>
+</html>
