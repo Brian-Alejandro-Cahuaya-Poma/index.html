@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <title>Para Rossangela 💖</title>
 
+<!-- TIPOGRAFIAS -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
 <style>
-/* =========================
-   RESET Y BASE
-========================= */
 *{
     margin:0;
     padding:0;
@@ -15,27 +15,21 @@
 }
 
 body{
-    background: linear-gradient(180deg, #2a0435, #0f0c29);
-    color:#fff;
-    font-family: "Georgia", serif;
+    background: linear-gradient(180deg, #1a0226, #12001a);
+    color:#f5c2da;
+    font-family:'Playfair Display', serif;
     min-height:100vh;
     overflow-x:hidden;
-    transition: background 10s ease;
 }
 
-/* =========================
-   FONDOS ANIMADOS
-========================= */
-.rosa, .corazon{
+/* ROSAS */
+.rosa{
     position:fixed;
     top:-40px;
     animation: caer linear infinite;
-    opacity:.85;
+    opacity:.8;
     pointer-events:none;
 }
-
-.rosa{ color:#ff6fae; }
-.corazon{ color:#ff4d88; }
 
 @keyframes caer{
     to{
@@ -43,261 +37,195 @@ body{
     }
 }
 
-/* =========================
-   CONTENEDOR
-========================= */
+/* CONTENEDOR */
 .contenedor{
     max-width:900px;
     margin:70px auto;
-    padding:45px;
-    background:rgba(255,255,255,0.1);
+    padding:50px;
+    background:linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.05));
     border-radius:30px;
-    box-shadow:0 0 45px rgba(255,0,120,.45);
-    animation: aparecer 2s ease;
+    box-shadow:
+        0 0 50px rgba(255,105,180,.35),
+        inset 0 0 30px rgba(255,255,255,.1);
 }
 
-@keyframes aparecer{
-    from{opacity:0; transform:scale(.85);}
-    to{opacity:1; transform:scale(1);}
-}
-
+/* TITULOS */
 h1{
     text-align:center;
-    font-size:48px;
-    color:#ffb6d5;
+    font-size:52px;
+    font-family:'Dancing Script', cursive;
+    color:#ff7eb3;
     margin-bottom:10px;
-    text-shadow:0 0 15px #ff4d88;
+    text-shadow:0 0 20px rgba(255,126,179,.8);
 }
 
 h2{
     text-align:center;
     font-weight:normal;
     margin-bottom:35px;
-    color:#ffd6e8;
+    color:#f7a8c8;
+    letter-spacing:1px;
 }
 
-/* =========================
-   CARTA
-========================= */
+/* CARTA */
 .carta{
-    font-size:18px;
-    line-height:1.9;
+    font-size:19px;
+    line-height:2;
     text-align:justify;
     display:none;
-    white-space:pre-line;
-    margin-top:25px;
+    margin-top:30px;
+    color:#f3b6d2;
 }
 
-.destacado{
-    color:#ff9acb;
-    font-weight:bold;
+.carta p{
+    margin-bottom:25px;
+    opacity:0;
+    transition:opacity 1.2s ease;
 }
 
-/* =========================
-   BOTONES
-========================= */
+/* BOTONES */
 button{
     display:block;
     margin:25px auto;
-    padding:14px 36px;
+    padding:14px 38px;
     border:none;
     border-radius:30px;
-    background:linear-gradient(45deg,#ff4d88,#ff85b3);
+    background:linear-gradient(45deg,#ff5fa2,#ff8fc7);
     color:white;
     font-size:16px;
     cursor:pointer;
+    font-family:'Playfair Display', serif;
+    letter-spacing:1px;
     box-shadow:0 0 20px #ff4d88;
     transition:.3s;
 }
 
 button:hover{
-    transform:scale(1.1);
+    transform:scale(1.08);
 }
 
-button.secundario{
-    background:linear-gradient(45deg,#a855f7,#ec4899);
-}
-
-/* =========================
-   EXTRAS
-========================= */
+/* FIRMA */
 .firma{
     text-align:right;
-    margin-top:45px;
+    margin-top:35px;
     font-style:italic;
-    color:#ffd6e8;
-}
-
-.latidos{
-    text-align:center;
-    margin-top:20px;
-    font-size:15px;
-    opacity:.8;
-}
-
-.oculto{
-    display:none;
-    margin-top:30px;
-    text-align:center;
-    color:#ffb6d5;
+    color:#ffd1e6;
 }
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     MUSICA
-========================= -->
+<!-- MUSICA -->
 <audio id="musica" loop>
-<source src="https://cdn.pixabay.com/audio/2022/10/25/audio_9b5b93cbd6.mp3">
+    <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
 <div class="contenedor">
-<h1>Para Rossangela 💖</h1>
-<h2>Una carta que late contigo</h2>
+    <h1>Para Rossangela 💖</h1>
+    <h2>Una carta que se descubre poco a poco</h2>
 
-<button onclick="iniciarCarta()">Abrir la carta 💌</button>
+    <button onclick="iniciarCarta()">Abrir la carta 💌</button>
 
-<div class="carta" id="carta"></div>
+    <div class="carta" id="carta"></div>
 
-<button class="secundario" onclick="mostrarSecreto()">Ver algo más ✨</button>
+    <button id="btnSiguiente" onclick="siguienteParte()" style="display:none">
+        Siguiente 💖
+    </button>
 
-<div class="oculto" id="secreto">
-💗 Este mensaje existe porque tú existes 💗
-</div>
-
-<div class="latidos" id="latidos">
-Latidos del corazón: 0 💓
-</div>
-
-<div class="firma">
-Con cariño,<br>
-alguien que pensó en ti en cada línea 💕
-</div>
+    <div class="firma">
+        Con cariño,<br>
+        alguien que pensó en ti en cada línea 💕
+    </div>
 </div>
 
 <script>
-/* =========================
-   TEXTO DE LA CARTA
-========================= */
-const textoCarta = `
-Rossangela,
+/* TEXTO DIVIDIDO EN PARTES */
+const partes = [
+`Rossangela,
 
 No sabía muy bien cómo decirte todo esto,
 y por eso decidí hacerlo de una manera diferente…
 con tiempo, con calma,
-y con la sinceridad que nace cuando pienso en ti.
+y pensando en ti en cada detalle.`,
 
-Desde que llegaste a mi vida,
+`Desde que llegaste a mi vida,
 las cosas pequeñas comenzaron a tener más sentido.
 Las canciones suenan distinto,
-las sonrisas aparecen solas,
-y hasta los silencios se sienten más tranquilos.
+las sonrisas aparecen sin avisar,
+y los días se sienten más suaves
+cuando pienso en ti.`,
 
-No eres solo alguien especial,
+`No eres solo alguien especial,
 eres esa persona que logra cambiar
 el ánimo de un día entero
 con solo existir.
+Eres tranquilidad,
+presencia,
+y calma.`,
 
-No prometo perfección,
-pero sí verdad.
+`No prometo perfección,
+porque soy humano.
+Pero sí prometo sinceridad.
 No prometo caminos fáciles,
 pero sí caminar contigo
-si algún día decides hacerlo.
+si algún día decides hacerlo.`,
 
-Esto no es solo una carta,
-es una forma de decirte
+`Esto no es solo una carta.
+Es una forma de decirte
 que lo que siento es real,
 tranquilo,
-y profundamente sincero.
+y profundamente sincero.`,
 
-Si alguna vez dudas,
+`Si algún día dudas,
 vuelve aquí.
-Este pequeño programa
+Porque cada parte que aparece,
+cada palabra escrita,
 es solo una prueba
 de algo mucho más grande
-que nace de mi corazón.
-`;
+que nace de mi corazón.`,
 
-/* =========================
-   MAQUINA DE ESCRIBIR
-========================= */
+`Con cariño,
+alguien que piensa en ti
+más de lo que imaginas 💕`
+];
+
 let indice = 0;
-function escribirCarta(){
-    if(indice < textoCarta.length){
-        document.getElementById("carta").textContent += textoCarta.charAt(indice);
+
+/* INICIAR */
+function iniciarCarta(){
+    document.getElementById("musica").play();
+    document.getElementById("carta").style.display="block";
+    document.getElementById("btnSiguiente").style.display="block";
+    crearRosas();
+    siguienteParte();
+}
+
+/* MOSTRAR PARTES */
+function siguienteParte(){
+    if(indice < partes.length){
+        const p = document.createElement("p");
+        p.textContent = partes[indice];
+        document.getElementById("carta").appendChild(p);
+        setTimeout(()=> p.style.opacity = "1", 100);
         indice++;
-        setTimeout(escribirCarta, 35);
+    } else {
+        document.getElementById("btnSiguiente").textContent = "Fin 💖";
     }
 }
 
-/* =========================
-   INICIO
-========================= */
-function iniciarCarta(){
-    document.getElementById("carta").style.display="block";
-    document.getElementById("musica").play();
-    escribirCarta();
-    iniciarRosas();
-    iniciarCorazones();
-    iniciarLatidos();
-    cambiarFondo();
-}
-
-/* =========================
-   EFECTOS
-========================= */
-function iniciarRosas(){
+/* ROSAS */
+function crearRosas(){
     setInterval(()=>{
-        crearElemento("🌹","rosa",8,28);
-    },500);
-}
-
-function iniciarCorazones(){
-    setInterval(()=>{
-        crearElemento("💖","corazon",12,24);
-    },800);
-}
-
-function crearElemento(simbolo,clase,min,max){
-    let el=document.createElement("div");
-    el.className=clase;
-    el.textContent=simbolo;
-    el.style.left=Math.random()*100+"vw";
-    el.style.fontSize=(min+Math.random()*max)+"px";
-    el.style.animationDuration=(6+Math.random()*6)+"s";
-    document.body.appendChild(el);
-    setTimeout(()=>el.remove(),14000);
-}
-
-/* =========================
-   SECRETO
-========================= */
-function mostrarSecreto(){
-    document.getElementById("secreto").style.display="block";
-}
-
-/* =========================
-   LATIDOS
-========================= */
-let latidos=0;
-function iniciarLatidos(){
-    setInterval(()=>{
-        latidos++;
-        document.getElementById("latidos").textContent=
-        "Latidos del corazón: "+latidos+" 💓";
-    },1000);
-}
-
-/* =========================
-   FONDO DINAMICO
-========================= */
-function cambiarFondo(){
-    setInterval(()=>{
-        document.body.style.background=
-        "linear-gradient(180deg,#"+Math.floor(Math.random()*999999)+",#0f0c29)";
-    },12000);
+        let rosa=document.createElement("div");
+        rosa.className="rosa";
+        rosa.textContent="🌹";
+        rosa.style.left=Math.random()*100+"vw";
+        rosa.style.fontSize=(18+Math.random()*22)+"px";
+        rosa.style.animationDuration=(6+Math.random()*6)+"s";
+        document.body.appendChild(rosa);
+        setTimeout(()=>rosa.remove(),14000);
+    },700);
 }
 </script>
 
