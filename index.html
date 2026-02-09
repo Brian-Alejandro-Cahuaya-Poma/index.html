@@ -43,7 +43,7 @@ body{
     background:
         radial-gradient(circle at 20% 20%, rgba(255,255,255,.12), transparent 40%),
         radial-gradient(circle at 80% 70%, rgba(255,255,255,.08), transparent 45%);
-    z-index:-3;
+    z-index:0;
 }
 
 /* =====================================================
@@ -52,7 +52,7 @@ body{
 .particula{
     position:fixed;
     pointer-events:none;
-    z-index:-1;
+    z-index:5; /* 🔧 CORREGIDO */
     opacity:.85;
     animation: flotar linear infinite;
 }
@@ -83,6 +83,7 @@ body{
         inset 0 0 35px rgba(255,255,255,.12);
     backdrop-filter:blur(8px);
     position:relative;
+    z-index:10;
 }
 
 /* =====================================================
@@ -178,19 +179,6 @@ button:hover{
     font-style:italic;
     color:#ffe6f2;
 }
-
-/* =====================================================
-   EFECTOS EXTRA
-===================================================== */
-.anim-lento{
-    animation:latido 6s ease-in-out infinite;
-}
-
-@keyframes latido{
-    0%{transform:scale(1);}
-    50%{transform:scale(1.04);}
-    100%{transform:scale(1);}
-}
 </style>
 </head>
 
@@ -203,78 +191,62 @@ button:hover{
     <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
-<div class="contenedor anim-lento">
+<div class="contenedor">
 
-    <h1>Para Rossangela 🤍</h1>
-    <h2>Una carta para ti de Brian</h2>
+<h1>Para Rossangela 🤍</h1>
+<h2>Una carta para ti</h2>
 
-    <button onclick="iniciar()">Leelo porfavor ✨</button>
+<button onclick="iniciar()">Leelo porfavor ✨</button>
 
-    <div class="carta" id="carta"></div>
+<div class="carta" id="carta"></div>
 
-    <button id="btnSiguiente" onclick="siguiente()" style="display:none">
-        Seguir leyendo 🤍
-    </button>
+<button id="btnSiguiente" onclick="siguiente()" style="display:none">
+Seguir leyendo 🤍
+</button>
 
-    <div class="contador" id="contador"></div>
+<div class="contador" id="contador"></div>
 
-    <div class="final" id="final">
-        Gracias por leer hasta aquí 🌹<br>
-        Esta carta existe porque tú existes.
-    </div>
+<div class="final" id="final">
+Gracias por leer hasta aquí 🌹<br>
+Esta carta existe porque tú existes.
+</div>
 
-    <div class="firma">
-        Con cariño,<br>
-        Brian ✨
-    </div>
+<div class="firma">
+Con cariño,<br>
+Brian ✨
+</div>
 
 </div>
 
 <script>
 /* =====================================================
-   TEXTO DE LA CARTA (PÁRRAFOS)
+   TEXTO DE LA CARTA (CORREGIDO)
 ===================================================== */
 const parrafos = [
-`Hola... Rossangela`
+`Hola... Rossangela`,
 
-`Si lees esto significa que hoy martes 10 de 
-febrero si tuve el valor de pedirte ser mi enamorada
-espero que me ayas dicho que si jajajajaja.
-programe esto por que me conosco, y se que al momente 
-me debi trabar o debi olvidarme decirte muchas cosas... `
+`Si lees esto significa que hoy martes 10 de febrero sí tuve el valor de pedirte ser mi enamorada.
+Programé esto porque me conozco y sé que al momento me trabo o me olvido decir muchas cosas.`,
 
 `Hay personas que llegan de manera silenciosa,
 pero aun así lo transforman todo.
 No hacen ruido,
-no avisan,
 simplemente se quedan.`,
 
 `Desde que apareciste,
-los días comenzaron a sentirse distintos.
-Las cosas simples adquirieron valor,
-y las sonrisas empezaron a surgir sin razón.`,
+los días comenzaron a sentirse distintos.`,
 
-`No intento impresionarte con palabras adornadas.
-Prefiero ser sincero,
-porque lo sincero permanece
-cuando todo lo demás se desvanece.`,
-
-`Esta carta no tiene prisa.
-Avanza con calma,
-como lo hacen los sentimientos reales,
-aquellos que no necesitan demostrarse,
-solo sentirse.`,
+`No intento impresionarte,
+prefiero ser sincero,
+porque lo sincero permanece.`,
 
 `Pensarte se volvió algo natural,
 algo tranquilo,
-como una costumbre bonita
-que llega sin pedir permiso.`,
+como una costumbre bonita.`,
 
 `Si hoy lees esto,
 quiero que sepas algo muy simple:
-lo que siento es real,
-es honesto,
-y nace desde un lugar sincero.`,
+lo que siento es real.`,
 
 `Gracias por existir,
 por ser como eres,
@@ -289,7 +261,7 @@ let indice = 0;
 let segundos = 0;
 
 /* =====================================================
-   FUNCIONES PRINCIPALES
+   FUNCIONES
 ===================================================== */
 function iniciar(){
     document.getElementById("musica").play();
@@ -317,7 +289,7 @@ function siguiente(){
 }
 
 /* =====================================================
-   PARTÍCULAS DINÁMICAS
+   PARTÍCULAS
 ===================================================== */
 function crearParticulas(){
     setInterval(()=>{
@@ -333,7 +305,7 @@ function crearParticulas(){
 }
 
 /* =====================================================
-   CONTADOR DE TIEMPO
+   CONTADOR
 ===================================================== */
 function iniciarContador(){
     setInterval(()=>{
@@ -342,36 +314,7 @@ function iniciarContador(){
         "Tiempo leyendo esta carta: " + segundos + " segundos 🤍";
     },1000);
 }
-
-/* =====================================================
-   CAMBIO SUAVE DE FONDO
-===================================================== */
-function cambiarFondo(){
-    const fondos = [
-        "radial-gradient(circle at top, #2a043c, #120016)",
-        "radial-gradient(circle at top, #3a0a4a, #16001c)",
-        "radial-gradient(circle at top, #4a0f5c, #1b0022)"
-    ];
-    document.body.style.background =
-    fondos[Math.floor(Math.random()*fondos.length)];
-}
-setInterval(cambiarFondo, 15000);
-
-/* =====================================================
-   EFECTO DE ENTRADA
-===================================================== */
-window.addEventListener("load",()=>{
-    document.body.style.opacity="0";
-    document.body.style.transition="opacity 2s ease";
-    setTimeout(()=>document.body.style.opacity="1",200);
-});
-
-/* =====================================================
-   BLOQUEO ESTÉTICO
-===================================================== */
-document.addEventListener("contextmenu", e => e.preventDefault());
 </script>
 
 </body>
 </html>
-
