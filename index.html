@@ -6,13 +6,23 @@
 
 <title>Para Rossangela 🤍</title>
 
+<!-- =====================================================
+     FUENTES
+===================================================== -->
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:wght@400;500;600&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
+/* =====================================================
+   RESET GENERAL
+===================================================== */
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
@@ -21,24 +31,29 @@ body{
     font-family:'Playfair Display', serif;
     color:#ffe6f2;
     overflow-x:hidden;
+    transition:background 2s ease;
 }
 
-/* ================= FONDO ================= */
+/* =====================================================
+   FONDO LUMINOSO SUAVE
+===================================================== */
 .fondo-luz{
     position:fixed;
     inset:0;
     background:
         radial-gradient(circle at 20% 20%, rgba(255,255,255,.12), transparent 40%),
         radial-gradient(circle at 80% 70%, rgba(255,255,255,.08), transparent 45%);
-    z-index:1;
+    z-index:0;
 }
 
-/* ================= PARTÍCULAS ================= */
+/* =====================================================
+   PARTÍCULAS (FLORES Y CORAZONES)
+===================================================== */
 .particula{
     position:fixed;
     pointer-events:none;
-    z-index:9999;
-    opacity:.9;
+    z-index:5; /* 🔧 CORREGIDO */
+    opacity:.85;
     animation: flotar linear infinite;
 }
 
@@ -54,26 +69,35 @@ body{
     }
 }
 
-/* ================= CONTENEDOR ================= */
+/* =====================================================
+   CONTENEDOR PRINCIPAL
+===================================================== */
 .contenedor{
     max-width:1000px;
-    margin:80px auto;
+    margin:70px auto;
     padding:60px;
-    background:linear-gradient(145deg, rgba(255,255,255,.15), rgba(255,255,255,.05));
+    background:linear-gradient(145deg, rgba(255,255,255,.14), rgba(255,255,255,.05));
     border-radius:40px;
-    box-shadow:0 0 60px rgba(255,255,255,.3);
+    box-shadow:
+        0 0 60px rgba(255,255,255,.25),
+        inset 0 0 35px rgba(255,255,255,.12);
     backdrop-filter:blur(8px);
     position:relative;
     z-index:10;
 }
 
-/* ================= TITULOS ================= */
+/* =====================================================
+   TITULOS
+===================================================== */
 h1{
     text-align:center;
     font-family:'Dancing Script', cursive;
     font-size:62px;
     color:#ffffff;
     margin-bottom:10px;
+    text-shadow:
+        0 0 10px rgba(255,255,255,.6),
+        0 0 30px rgba(255,255,255,.9);
 }
 
 h2{
@@ -81,9 +105,12 @@ h2{
     font-weight:300;
     letter-spacing:2px;
     margin-bottom:45px;
+    color:#f3d6e5;
 }
 
-/* ================= CARTA ================= */
+/* =====================================================
+   CARTA
+===================================================== */
 .carta{
     display:none;
     margin-top:20px;
@@ -95,11 +122,13 @@ h2{
     line-height:2.2;
     opacity:0;
     transform:translateY(25px);
-    transition:all 1.3s ease;
+    transition:all 1.4s ease;
     text-align:justify;
 }
 
-/* ================= BOTONES ================= */
+/* =====================================================
+   BOTONES
+===================================================== */
 button{
     display:block;
     margin:30px auto;
@@ -109,22 +138,46 @@ button{
     background:linear-gradient(45deg,#ffffff,#f1cfe0);
     color:#3b0025;
     font-size:16px;
+    letter-spacing:2px;
     cursor:pointer;
     box-shadow:0 0 30px rgba(255,255,255,.7);
+    transition:.35s;
 }
 
-/* ================= FINAL ================= */
+button:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 55px rgba(255,255,255,1);
+}
+
+/* =====================================================
+   CONTADOR
+===================================================== */
+.contador{
+    text-align:center;
+    margin-top:40px;
+    font-family:'Cinzel', serif;
+    color:#ffffff;
+}
+
+/* =====================================================
+   FINAL
+===================================================== */
 .final{
     display:none;
     margin-top:50px;
     text-align:center;
     font-size:22px;
+    color:#ffffff;
 }
 
+/* =====================================================
+   FIRMA
+===================================================== */
 .firma{
     margin-top:60px;
     text-align:right;
     font-style:italic;
+    color:#ffe6f2;
 }
 </style>
 </head>
@@ -133,6 +186,7 @@ button{
 
 <div class="fondo-luz"></div>
 
+<!-- ================= MUSICA ================= -->
 <audio id="musica" loop>
     <source src="musica.mp3" type="audio/mpeg">
 </audio>
@@ -142,13 +196,15 @@ button{
 <h1>Para Rossangela 🤍</h1>
 <h2>Una carta para ti</h2>
 
-<button onclick="iniciar()">Léelo por favor ✨</button>
+<button onclick="iniciar()">Leelo porfavor ✨</button>
 
 <div class="carta" id="carta"></div>
 
 <button id="btnSiguiente" onclick="siguiente()" style="display:none">
 Seguir leyendo 🤍
 </button>
+
+<div class="contador" id="contador"></div>
 
 <div class="final" id="final">
 Gracias por leer hasta aquí 🌹<br>
@@ -163,54 +219,63 @@ Brian ✨
 </div>
 
 <script>
-/* ================= TEXTO ================= */
+/* =====================================================
+   TEXTO DE LA CARTA (CORREGIDO)
+===================================================== */
 const parrafos = [
 `Hola... Rossangela`,
 
-`Si lees esto significa que hoy martes 10 de febrero sí tuve el valor de pedirte ser mi enamorada.<br><br>
+`Si lees esto significa que hoy martes 10 de febrero sí tuve el valor de pedirte ser mi enamorada.
 Programé esto porque me conozco y sé que al momento me trabo o me olvido decir muchas cosas.`,
 
-`Hay personas que llegan de manera silenciosa,<br><br>
-pero aun así lo transforman todo.<br><br>
-No hacen ruido,<br><br>
+`Hay personas que llegan de manera silenciosa,
+pero aun así lo transforman todo.
+No hacen ruido,
 simplemente se quedan.`,
 
-`Desde que apareciste,<br><br>
-los días comenzaron a sentirse distintos,<br><br>
-más tranquilos, más sinceros.`,
+`Desde que apareciste,
+los días comenzaron a sentirse distintos.`,
 
-`No intento impresionarte con palabras bonitas,<br><br>
-prefiero ser sincero,<br><br>
+`No intento impresionarte,
+prefiero ser sincero,
 porque lo sincero permanece.`,
 
-`Pensarte se volvió algo natural,<br><br>
-una costumbre bonita,<br><br>
-de esas que llegan sin avisar.`,
+`Pensarte se volvió algo natural,
+algo tranquilo,
+como una costumbre bonita.`,
 
-`Si hoy lees esto,<br><br>
-quiero que sepas algo muy simple:<br><br>
+`Si hoy lees esto,
+quiero que sepas algo muy simple:
 lo que siento es real.`,
 
-`Rossangela,<br><br>
-esta carta es solo un reflejo pequeño<br><br>
+`Gracias por existir,
+por ser como eres,
+y por inspirar sin darte cuenta.`,
+
+`Rossangela,
+esta carta es solo un reflejo pequeño
 de algo mucho más grande 🤍`
 ];
 
 let indice = 0;
+let segundos = 0;
 
-/* ================= FUNCIONES ================= */
+/* =====================================================
+   FUNCIONES
+===================================================== */
 function iniciar(){
     document.getElementById("musica").play();
     document.getElementById("carta").style.display="block";
     document.getElementById("btnSiguiente").style.display="block";
     crearParticulas();
+    iniciarContador();
     siguiente();
 }
 
 function siguiente(){
     if(indice < parrafos.length){
         const p = document.createElement("p");
-        p.innerHTML = parrafos[indice];
+        p.textContent = parrafos[indice];
         document.getElementById("carta").appendChild(p);
         setTimeout(()=>{
             p.style.opacity=1;
@@ -223,7 +288,9 @@ function siguiente(){
     }
 }
 
-/* ================= PARTÍCULAS ================= */
+/* =====================================================
+   PARTÍCULAS
+===================================================== */
 function crearParticulas(){
     setInterval(()=>{
         const el = document.createElement("div");
@@ -234,11 +301,24 @@ function crearParticulas(){
         el.style.animationDuration = (8 + Math.random()*10) + "s";
         document.body.appendChild(el);
         setTimeout(()=>el.remove(),20000);
-    },350);
+    },450);
+}
+
+/* =====================================================
+   CONTADOR
+===================================================== */
+function iniciarContador(){
+    setInterval(()=>{
+        segundos++;
+        document.getElementById("contador").textContent =
+        "Tiempo leyendo esta carta: " + segundos + " segundos 🤍";
+    },1000);
 }
 </script>
 
 </body>
 </html>
+
+
 
 
