@@ -2,232 +2,377 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Para Rossangela 💖</title>
 
-<!-- TIPOGRAFIAS -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<!-- =====================================================
+     FUENTES
+===================================================== -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:wght@400;500;600&family=Cinzel:wght@500&display=swap" rel="stylesheet">
 
 <style>
+/* =====================================================
+   RESET GENERAL
+===================================================== */
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
-    background: linear-gradient(180deg, #1a0226, #12001a);
-    color:#f5c2da;
-    font-family:'Playfair Display', serif;
     min-height:100vh;
+    background:radial-gradient(circle at top, #2a043c, #120016);
+    font-family:'Playfair Display', serif;
+    color:#f7b7d6;
     overflow-x:hidden;
+    transition:background 2s ease;
 }
 
-/* ROSAS */
-.rosa{
+/* =====================================================
+   FONDO LUMINOSO
+===================================================== */
+.fondo-luz{
     position:fixed;
-    top:-40px;
-    animation: caer linear infinite;
-    opacity:.8;
-    pointer-events:none;
+    inset:0;
+    background:
+        radial-gradient(circle at 15% 25%, rgba(255,120,180,.18), transparent 45%),
+        radial-gradient(circle at 85% 70%, rgba(255,160,200,.15), transparent 50%);
+    z-index:-2;
 }
 
-@keyframes caer{
+/* =====================================================
+   PARTÍCULAS
+===================================================== */
+.particula{
+    position:fixed;
+    top:-30px;
+    animation:bajar linear infinite;
+    pointer-events:none;
+    z-index:-1;
+}
+
+@keyframes bajar{
     to{
-        transform: translateY(120vh) rotate(360deg);
+        transform:translateY(130vh) rotate(360deg);
+        opacity:0;
     }
 }
 
-/* CONTENEDOR */
+/* =====================================================
+   CONTENEDOR PRINCIPAL
+===================================================== */
 .contenedor{
-    max-width:900px;
+    max-width:1000px;
     margin:70px auto;
-    padding:50px;
-    background:linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.05));
-    border-radius:30px;
+    padding:60px;
+    background:linear-gradient(145deg, rgba(255,255,255,.15), rgba(255,255,255,.05));
+    border-radius:35px;
     box-shadow:
-        0 0 50px rgba(255,105,180,.35),
-        inset 0 0 30px rgba(255,255,255,.1);
+        0 0 60px rgba(255,100,180,.35),
+        inset 0 0 35px rgba(255,255,255,.12);
+    position:relative;
 }
 
-/* TITULOS */
+/* =====================================================
+   TITULOS
+===================================================== */
 h1{
     text-align:center;
-    font-size:52px;
     font-family:'Dancing Script', cursive;
-    color:#ff7eb3;
+    font-size:58px;
+    color:#ff8fc7;
     margin-bottom:10px;
-    text-shadow:0 0 20px rgba(255,126,179,.8);
+    text-shadow:
+        0 0 10px rgba(255,140,200,.6),
+        0 0 30px rgba(255,80,160,.9);
 }
 
 h2{
     text-align:center;
-    font-weight:normal;
-    margin-bottom:35px;
-    color:#f7a8c8;
-    letter-spacing:1px;
+    font-weight:400;
+    letter-spacing:2px;
+    margin-bottom:40px;
+    color:#ffd1e8;
 }
 
-/* CARTA */
+/* =====================================================
+   CARTA
+===================================================== */
 .carta{
-    font-size:19px;
-    line-height:2;
-    text-align:justify;
     display:none;
     margin-top:30px;
-    color:#f3b6d2;
 }
 
 .carta p{
-    margin-bottom:25px;
+    margin-bottom:28px;
+    font-size:20px;
+    line-height:2.1;
     opacity:0;
-    transition:opacity 1.2s ease;
+    transition:opacity 1.4s ease;
+    text-align:justify;
 }
 
-/* BOTONES */
+/* =====================================================
+   BOTONES
+===================================================== */
 button{
     display:block;
     margin:25px auto;
-    padding:14px 38px;
+    padding:16px 45px;
     border:none;
-    border-radius:30px;
-    background:linear-gradient(45deg,#ff5fa2,#ff8fc7);
+    border-radius:40px;
+    background:linear-gradient(45deg,#ff5fa2,#ff9fd2);
     color:white;
     font-size:16px;
     cursor:pointer;
-    font-family:'Playfair Display', serif;
-    letter-spacing:1px;
-    box-shadow:0 0 20px #ff4d88;
+    letter-spacing:2px;
+    box-shadow:0 0 25px rgba(255,80,160,.9);
     transition:.3s;
 }
 
 button:hover{
-    transform:scale(1.08);
+    transform:scale(1.1);
+    box-shadow:0 0 45px rgba(255,120,190,1);
 }
 
-/* FIRMA */
+/* =====================================================
+   FIRMA
+===================================================== */
 .firma{
     text-align:right;
-    margin-top:35px;
+    margin-top:50px;
     font-style:italic;
-    color:#ffd1e6;
+    font-size:18px;
+    color:#ffe1f0;
+}
+
+/* =====================================================
+   CONTADOR
+===================================================== */
+.contador{
+    text-align:center;
+    margin-top:40px;
+    font-family:'Cinzel', serif;
+    color:#ffcbe3;
+}
+
+/* =====================================================
+   FINAL
+===================================================== */
+.final{
+    display:none;
+    margin-top:50px;
+    text-align:center;
+    font-size:22px;
+    color:#ffd6ec;
+}
+
+/* =====================================================
+   EFECTOS EXTRA
+===================================================== */
+.sombra-suave{
+    text-shadow:
+        0 0 5px rgba(255,180,220,.4),
+        0 0 15px rgba(255,120,200,.6),
+        0 0 30px rgba(255,80,160,.8);
+}
+
+.anim-lento{
+    animation:latido 6s ease-in-out infinite;
+}
+
+@keyframes latido{
+    0%{ transform:scale(1); }
+    50%{ transform:scale(1.05); }
+    100%{ transform:scale(1); }
 }
 </style>
 </head>
 
 <body>
 
-<!-- MUSICA -->
+<div class="fondo-luz"></div>
+
+<!-- ================== MUSICA ================== -->
 <audio id="musica" loop>
     <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
-<div class="contenedor">
-    <h1>Para Rossangela 💖</h1>
-    <h2>Una carta que se descubre poco a poco</h2>
+<div class="contenedor anim-lento">
 
-    <button onclick="iniciarCarta()">Abrir la carta 💌</button>
+    <h1 class="sombra-suave">Para Rossangela 💖</h1>
+    <h2>Una carta que se revela con el tiempo</h2>
+
+    <button onclick="iniciar()">Abrir la carta 💌</button>
 
     <div class="carta" id="carta"></div>
 
-    <button id="btnSiguiente" onclick="siguienteParte()" style="display:none">
-        Siguiente 💖
+    <button id="btnSiguiente" onclick="siguiente()" style="display:none">
+        Seguir leyendo 💖
     </button>
+
+    <div class="contador" id="contador"></div>
+
+    <div class="final" id="final">
+        Gracias por llegar hasta aquí 🌹<br>
+        Esta carta existe porque tú existes.
+    </div>
 
     <div class="firma">
         Con cariño,<br>
-        alguien que pensó en ti en cada línea 💕
+        alguien que piensa en ti más de lo que imaginas 💕
     </div>
+
 </div>
 
 <script>
-/* TEXTO DIVIDIDO EN PARTES */
-const partes = [
-`Rossangela,
+/* =====================================================
+   TEXTO DE LA CARTA (MUY LARGO A PROPÓSITO)
+===================================================== */
+const texto = [
+`Rossangela…`,
+`No todos los días uno se anima a escribir algo así.`,
+`Menos aún, a dejarlo aquí, expuesto, sincero.`,
 
-No sabía muy bien cómo decirte todo esto,
-y por eso decidí hacerlo de una manera diferente…
-con tiempo, con calma,
-y pensando en ti en cada detalle.`,
+`Esta carta no nació de un impulso.`,
+`Nació de pensarte.`,
+`De esas veces en las que el silencio dice más que cualquier palabra.`,
 
-`Desde que llegaste a mi vida,
-las cosas pequeñas comenzaron a tener más sentido.
-Las canciones suenan distinto,
-las sonrisas aparecen sin avisar,
-y los días se sienten más suaves
-cuando pienso en ti.`,
+`No llegaste haciendo ruido.`,
+`Llegaste como llegan las cosas que importan.`,
+`Despacio.`,
+`Con calma.`,
+`Sin pedir permiso.`,
 
-`No eres solo alguien especial,
-eres esa persona que logra cambiar
-el ánimo de un día entero
-con solo existir.
-Eres tranquilidad,
-presencia,
-y calma.`,
+`Desde entonces,`,
+`los días tienen otro tono.`,
+`Las canciones duran un poco más.`,
+`Y las sonrisas aparecen sin explicación.`,
 
-`No prometo perfección,
-porque soy humano.
-Pero sí prometo sinceridad.
-No prometo caminos fáciles,
-pero sí caminar contigo
-si algún día decides hacerlo.`,
+`No intento impresionarte.`,
+`Intento ser honesto.`,
+`Porque lo honesto es lo único que vale cuando algo es real.`,
 
-`Esto no es solo una carta.
-Es una forma de decirte
-que lo que siento es real,
-tranquilo,
-y profundamente sincero.`,
+`No prometo perfección.`,
+`Prometo presencia.`,
+`Prometo intentarlo.`,
+`Prometo cuidarlo.`,
 
-`Si algún día dudas,
-vuelve aquí.
-Porque cada parte que aparece,
-cada palabra escrita,
-es solo una prueba
-de algo mucho más grande
-que nace de mi corazón.`,
+`Si esta carta avanza poco a poco,`,
+`es porque así también avanzan los sentimientos verdaderos.`,
 
-`Con cariño,
-alguien que piensa en ti
-más de lo que imaginas 💕`
+`No con prisa.`,
+`No con ruido.`,
+`Sino con intención.`,
+
+`Gracias por existir.`,
+`Gracias por ser.`,
+`Gracias por inspirar sin darte cuenta.`,
+
+`Esto no es un final.`,
+`Es solo una pausa bonita.`,
+`Una de esas que se quedan.`,
+
+`Y si llegaste hasta aquí,`,
+`ya conoces un pedazo de lo que siento.`,
+`Uno sincero.`,
+`Uno real.`,
+`Uno que no necesita adornos.`,
+
+`Rossangela…`,
+`esta carta existe porque tú existes.`
 ];
 
-let indice = 0;
+let i = 0;
+let segundos = 0;
 
-/* INICIAR */
-function iniciarCarta(){
+/* =====================================================
+   FUNCIONES PRINCIPALES
+===================================================== */
+function iniciar(){
     document.getElementById("musica").play();
     document.getElementById("carta").style.display="block";
     document.getElementById("btnSiguiente").style.display="block";
-    crearRosas();
-    siguienteParte();
+    crearParticulas();
+    siguiente();
+    iniciarContador();
 }
 
-/* MOSTRAR PARTES */
-function siguienteParte(){
-    if(indice < partes.length){
+function siguiente(){
+    if(i < texto.length){
         const p = document.createElement("p");
-        p.textContent = partes[indice];
+        p.textContent = texto[i];
         document.getElementById("carta").appendChild(p);
-        setTimeout(()=> p.style.opacity = "1", 100);
-        indice++;
-    } else {
-        document.getElementById("btnSiguiente").textContent = "Fin 💖";
+        setTimeout(()=>p.style.opacity=1,150);
+        i++;
+    }else{
+        document.getElementById("btnSiguiente").style.display="none";
+        document.getElementById("final").style.display="block";
     }
 }
 
-/* ROSAS */
-function crearRosas(){
+/* =====================================================
+   PARTÍCULAS
+===================================================== */
+function crearParticulas(){
     setInterval(()=>{
-        let rosa=document.createElement("div");
-        rosa.className="rosa";
-        rosa.textContent="🌹";
-        rosa.style.left=Math.random()*100+"vw";
-        rosa.style.fontSize=(18+Math.random()*22)+"px";
-        rosa.style.animationDuration=(6+Math.random()*6)+"s";
-        document.body.appendChild(rosa);
-        setTimeout(()=>rosa.remove(),14000);
-    },700);
+        const e = document.createElement("div");
+        e.className="particula";
+        e.textContent=Math.random()>0.5?"🌹":"💖";
+        e.style.left=Math.random()*100+"vw";
+        e.style.fontSize=(18+Math.random()*28)+"px";
+        e.style.animationDuration=(6+Math.random()*6)+"s";
+        document.body.appendChild(e);
+        setTimeout(()=>e.remove(),15000);
+    },600);
 }
+
+/* =====================================================
+   CONTADOR
+===================================================== */
+function iniciarContador(){
+    setInterval(()=>{
+        segundos++;
+        document.getElementById("contador").textContent =
+        "Tiempo leyendo esta carta: " + segundos + " segundos 💕";
+    },1000);
+}
+
+/* =====================================================
+   CAMBIO SUAVE DE FONDO
+===================================================== */
+function cambiarFondo(){
+    const fondos = [
+        "radial-gradient(circle at top, #2a043c, #120016)",
+        "radial-gradient(circle at top, #3b0a45, #1a001f)",
+        "radial-gradient(circle at top, #4a0f5c, #1b0022)"
+    ];
+    document.body.style.background =
+        fondos[Math.floor(Math.random()*fondos.length)];
+}
+setInterval(cambiarFondo, 15000);
+
+/* =====================================================
+   EFECTOS DE ENTRADA
+===================================================== */
+window.addEventListener("load", ()=>{
+    document.body.style.opacity="0";
+    document.body.style.transition="opacity 2s ease";
+    setTimeout(()=>document.body.style.opacity="1",200);
+});
+
+/* =====================================================
+   BLOQUEO ESTÉTICO
+===================================================== */
+document.addEventListener("contextmenu", e => e.preventDefault());
 </script>
 
 </body>
 </html>
+
